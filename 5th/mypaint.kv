@@ -1,0 +1,35 @@
+<ClearButton>:
+    Button:
+        text: 'Clear'
+        right: root.right
+        top: root.top
+        width: 100
+        height: 100
+        on_release: app.painter.canvas.clear()
+
+<ColorChangeButton>:
+    Button:
+        text: 'Color'    
+        right: root.right+100
+        top: root.top
+        width: 100
+        height: 100
+        on_release: app.painter.open_popup()
+        
+<MyPopup>:
+    title: 'Color Select'
+    size_hint: None, None
+    size: 400, 400
+    BoxLayout:
+        orientation: 'vertical'
+        ColorPicker:
+            id: picker
+            color: app.painter.color
+            on_color: app.painter.color = self.color
+            
+        Button:
+            size_hint_y: None
+            height: 60
+            text: 'Change'
+            on_press: root.dismiss()
+        
